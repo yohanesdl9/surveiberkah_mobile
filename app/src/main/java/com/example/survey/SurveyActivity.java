@@ -144,7 +144,7 @@ public class SurveyActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<PostPutDelSurvey> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Error : Respon Anda tidak dapat disimpan", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Error: Respon tidak dapat disimpan", Toast.LENGTH_LONG).show();
                 }
             });
         }
