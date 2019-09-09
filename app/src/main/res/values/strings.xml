@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Survei Berkah Sehat</string>
+    <string name="app_name">Survey KESSAN</string>
     <string name="field_kode_faskes">Kode Faskes</string>
     <string name="field_nama_faskes">Nama Faskes</string>
     <string name="field_tanggal_berkunjung">Tanggal Berkunjung</string>
     <string name="field_nomor_bpjs">Masukkan nomor kartu BPJS Kesehatan Anda</string>
     <string name="field_nama_responden">Masukkan nama Anda</string>
-    <string name="kode_faskes"> : 0196B007</string>
-    <string name="nama_faskes"> : KLINIK BINA SEHAT PPNI</string>
+    <string name="kode_faskes"> : DU-U0006</string>
+    <string name="nama_faskes"> : FKTP DOKTER HERI</string>
     <string name="tanggal"> : Tanggal Sekarang</string>
     <string name="question_1">Apakah hari dan jam praktik pelayanan sesuai dengan yang tercantum pada papan nama fasilitas kesehatan?</string>
     <string name="question_saran">Berikan saran Anda</string>

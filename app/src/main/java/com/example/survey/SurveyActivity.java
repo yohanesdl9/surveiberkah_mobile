@@ -130,7 +130,7 @@ public class SurveyActivity extends AppCompatActivity {
             String nomorBPJS = getIntent().getStringExtra("nomorBPJS");
             String namaResponden = getIntent().getStringExtra("namaResponden");
             final String tanggalBerkunjung = getCurrentDate();
-            Call<PostPutDelSurvey> postSurveyCall = mApiInterface.postSurvey("0196B007", "KLINIK BINA SEHAT PPNI",
+            Call<PostPutDelSurvey> postSurveyCall = mApiInterface.postSurvey("DU-U0006", "FKTP DOKTER HERI",
                     nomorBPJS, namaResponden, tanggalBerkunjung, answers[0], answers[1], answers[2], answers[3], answers[4],
                     answers[5], answers[6], answers[7], saran);
             postSurveyCall.enqueue(new Callback<PostPutDelSurvey>() {

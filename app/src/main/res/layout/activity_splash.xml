@@ -10,17 +10,9 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="89dp"
-        android:contentDescription="logo"
-        app:srcCompat="@drawable/jkn" />
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="false"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@drawable/splash" />
 
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_marginTop="554dp" />
 </RelativeLayout>
