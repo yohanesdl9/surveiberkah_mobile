@@ -7,7 +7,7 @@
     <string name="field_nama_responden">Masukkan nama Anda</string>
     <string name="kode_faskes"> : DU-U0006</string>
     <string name="nama_faskes"> : FKTP DOKTER HERI</string>
-    <string name="tanggal"> : Tanggal Sekarang</string>
+    <string name="tanggal">Tanggal Berkunjung</string>
     <string name="question_1">Apakah hari dan jam praktik pelayanan sesuai dengan yang tercantum pada papan nama fasilitas kesehatan?</string>
     <string name="question_saran">Berikan saran Anda</string>
     <string name="mulai">Mulai</string>

@@ -8,11 +8,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.DatePicker;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView tanggalBerkunjung;
+    DatePicker tanggalBerkunjung;
     TextInputLayout nomorBPJS;
     TextInputLayout namaResponden;
     Button btnMulai;
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
-        tanggalBerkunjung = findViewById(R.id.textTanggal);
+        tanggalBerkunjung = findViewById(R.id.tanggalBerkunjung);
         nomorBPJS = findViewById(R.id.textNomorBPJS);
         namaResponden = findViewById(R.id.textNamaResponden);
         btnMulai = findViewById(R.id.btnMulai);
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             String nomor_BPJS = nomorBPJS.getEditText().getText().toString();
             String nama_responden = namaResponden.getEditText().getText().toString();
+            String tanggal = parseDate(tanggalBerkunjung);
             if (nomor_BPJS.isEmpty() || nama_responden.isEmpty()){
                 // Baris kode untuk menampilkan error pada text input nomor kartu BPJS
                 if (nomor_BPJS.isEmpty()){
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), SurveyActivity.class);
                 i.putExtra("nomorBPJS", nomor_BPJS);
                 i.putExtra("namaResponden", nama_responden);
+                i.putExtra("tanggalBerkunjung", tanggal);
                 startActivity(i);
             }
         }
@@ -80,5 +85,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public String parseDate(DatePicker datePicker){
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year =  datePicker.getYear();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        Date date = calendar.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(date);
     }
 }

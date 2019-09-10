@@ -17,8 +17,7 @@
     <TableLayout
         android:id="@+id/tableDetail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:layout_height="wrap_content">
 
         <TableRow
             android:layout_width="match_parent"
@@ -70,14 +69,16 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="0dp"
                 android:paddingEnd="5dp"
-                android:text="@string/field_tanggal_berkunjung"
+                android:text="@string/tanggal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-            <TextView
-                android:id="@+id/textTanggal"
+            <DatePicker
+                android:id="@+id/tanggalBerkunjung"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=": 28 Agustus 2019" />
+                android:datePickerMode="spinner"
+                android:spinnersShown="true"
+                android:calendarViewShown="false"/>
         </TableRow>
 
     </TableLayout>
