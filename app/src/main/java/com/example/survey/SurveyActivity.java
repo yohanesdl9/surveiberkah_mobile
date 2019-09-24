@@ -28,8 +28,8 @@ public class SurveyActivity extends AppCompatActivity {
     int flag = 0;
 
     LinearLayout linearQuestion, linearSaran;
-    RadioGroup answer;
-    TextView txtQuestion;
+    RadioGroup answer, answer1;
+    TextView txtQuestion, txtQuestion1;
     TextInputLayout textInputSaran;
     Button btnBack, btnNext, btnDone, btnBackSaran;
     ApiInterface mApiInterface;
@@ -61,7 +61,9 @@ public class SurveyActivity extends AppCompatActivity {
         linearQuestion = findViewById(R.id.linearSurvey);
         linearSaran = findViewById(R.id.linearSaran);
         txtQuestion = findViewById(R.id.txtQuestion);
+        txtQuestion1 = findViewById(R.id.txtQuestion1);
         answer = findViewById(R.id.radioAnswer);
+        answer1 = findViewById(R.id.radioAnswer1);
         textInputSaran = findViewById(R.id.textInputSaran);
         btnBack = findViewById(R.id.btnKembali);
         btnBackSaran = findViewById(R.id.btnKembaliSaran);
@@ -76,8 +78,8 @@ public class SurveyActivity extends AppCompatActivity {
     View.OnClickListener back = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            flag--;
-            if (flag == -1){
+            flag -= 2;
+            if (flag < 0){
                 SurveyActivity.super.onBackPressed();
             } else {
                 setQuestion();
@@ -88,7 +90,7 @@ public class SurveyActivity extends AppCompatActivity {
     View.OnClickListener backSaran = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            flag--; // Kurangi nilai flag dengan 1 (menjadi 7), maju ke satu pertanyaan selanjutnya
+            flag -= 2; // Kurangi nilai flag dengan 1 (menjadi 7), maju ke satu pertanyaan selanjutnya
             linearQuestion.setVisibility(View.VISIBLE); // Halaman pertanyaan muncul kembali
             linearSaran.setVisibility(View.GONE); // Halaman saran akan menghilang
             setQuestion();
@@ -98,7 +100,8 @@ public class SurveyActivity extends AppCompatActivity {
     View.OnClickListener next = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (answer.getCheckedRadioButtonId() != -1){ // Pengguna sudah menjawab dan mengklik tombol Next
+            if (answer.getCheckedRadioButtonId() != -1 && answer1.getCheckedRadioButtonId() != -1){
+                // Pengguna sudah menjawab kedua pertanyaan dan mengklik tombol Next
                 switch (answer.getCheckedRadioButtonId()){ // Simpan jawaban pengguna
                     case R.id.radioYes:
                         answers[flag] = "YA";
@@ -107,7 +110,15 @@ public class SurveyActivity extends AppCompatActivity {
                         answers[flag] = "TIDAK";
                         break;
                 }
-                flag++; // Tambahkan nilai flag dengan 1, maju ke satu pertanyaan selanjutnya
+                switch (answer1.getCheckedRadioButtonId()){ // Simpan jawaban pengguna
+                    case R.id.radioYes1:
+                        answers[flag + 1] = "YA";
+                        break;
+                    case R.id.radioNo1:
+                        answers[flag + 1] = "TIDAK";
+                        break;
+                }
+                flag+=2; // Tambahkan nilai flag dengan 1, maju ke satu pertanyaan selanjutnya
                 if (flag == 8){ // Pertanyaan terakhir sudah tercapai, masuk ke halaman untuk saran
                     linearQuestion.setVisibility(View.GONE);
                     linearSaran.setVisibility(View.VISIBLE);
@@ -136,9 +147,9 @@ public class SurveyActivity extends AppCompatActivity {
             postSurveyCall.enqueue(new Callback<PostPutDelSurvey>() {
                 @Override
                 public void onResponse(Call<PostPutDelSurvey> call, Response<PostPutDelSurvey> response) {
-                    Toast.makeText(getApplicationContext(), "Respon berhasil tersimpan pada : " + tanggalBerkunjung , Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Toast.makeText(getApplicationContext(), "Respon Anda berhasil tersimpan", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplicationContext(), ThankyouActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 }
 
@@ -152,20 +163,21 @@ public class SurveyActivity extends AppCompatActivity {
 
     public void setQuestion(){ // Method untuk mengatur tampilan pertanyaan pada layar
         txtQuestion.setText(questions[flag]);
-        if (answers[flag] == null){ // Jika pertanyaan sebelumnya/berikutnya belum dijawab, jawaban dikosongkan
+        txtQuestion1.setText(questions[flag + 1]);
+        if (answers[flag] == null && answers[flag + 1] == null){ // Jika pertanyaan sebelumnya/berikutnya belum dijawab, jawaban dikosongkan
             answer.clearCheck();
+            answer1.clearCheck();
         } else { // Jika pertanyaan pertanyaan sebelumnya/berikutnya telah terjawab, pilih sesuai jawaban yang disimpan pengguna
             if (answers[flag].equals("YA")){
                 answer.check(R.id.radioYes);
             } else if (answers[flag].equals("TIDAK")){
                 answer.check(R.id.radioNo);
             }
+            if (answers[flag + 1].equals("YA")){
+                answer1.check(R.id.radioYes1);
+            } else if (answers[flag + 1].equals("TIDAK")){
+                answer1.check(R.id.radioNo1);
+            }
         }
-    }
-
-    private String getCurrentDate(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
-        return dateFormat.format(date);
     }
 }

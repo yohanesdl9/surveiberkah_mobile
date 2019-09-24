@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/background"
+    android:padding="30dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,11 +14,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txtQuestion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/question_1" />
+        android:id="@+id/txtQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/question_1" />
 
         <RadioGroup
             android:id="@+id/radioAnswer"
@@ -33,6 +35,34 @@
 
             <RadioButton
                 android:id="@+id/radioNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TIDAK" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtQuestion1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/question_1" />
+
+        <RadioGroup
+            android:id="@+id/radioAnswer1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <RadioButton
+                android:id="@+id/radioYes1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="YA" />
+
+            <RadioButton
+                android:id="@+id/radioNo1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
